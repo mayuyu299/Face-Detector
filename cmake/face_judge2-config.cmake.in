@@ -1,0 +1,54 @@
+# Face_judge2 CMake config file
+#
+# This file sets the following variables:
+# Face_judge2_FOUND - Always TRUE.
+# Face_judge2_INCLUDE_DIRS - Directories containing the Face_judge2 include files.
+# Face_judge2_IDL_DIRS - Directories containing the Face_judge2 IDL files.
+# Face_judge2_LIBRARIES - Libraries needed to use Face_judge2.
+# Face_judge2_DEFINITIONS - Compiler flags for Face_judge2.
+# Face_judge2_VERSION - The version of Face_judge2 found.
+# Face_judge2_VERSION_MAJOR - The major version of Face_judge2 found.
+# Face_judge2_VERSION_MINOR - The minor version of Face_judge2 found.
+# Face_judge2_VERSION_REVISION - The revision version of Face_judge2 found.
+# Face_judge2_VERSION_CANDIDATE - The candidate version of Face_judge2 found.
+
+message(STATUS "Found Face_judge2-@PROJECT_VERSION@")
+set(Face_judge2_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(Face_judge2_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(Face_judge2_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(Face_judge2_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(Face_judge2_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(Face_judge2_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(Face_judge2_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(Face_judge2_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(Face_judge2_VERSION @PROJECT_VERSION@)
+set(Face_judge2_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(Face_judge2_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(Face_judge2_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(Face_judge2_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
